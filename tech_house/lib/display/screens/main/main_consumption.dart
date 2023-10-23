@@ -6,7 +6,7 @@ class MainConsuptiom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text("hola"),
+      child: Text("puta"),
     );
   }
 }
