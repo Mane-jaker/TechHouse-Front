@@ -6,75 +6,117 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("TechHouse"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Ingresar',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Raleway'),
-              ),
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Ingresar',
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Raleway'),
+                ),
+                SizedBox(height: 10),
+                Text('Ingresa a la aplicación con tu correo o mediante Gmail'),
+                SizedBox(height: 20),
+              ],
             ),
-            const SizedBox(height: 10),
-            const Text(
-                'Ingresa a la aplicación con tu correo o mediante Gmail'),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Iniciar sesión con Google
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-              child: const Text('Iniciar sesión con Google'),
+            Column(
+              children: [
+                SizedBox(
+                  width: double
+                      .infinity, // Hace que el Container ocupe todo el ancho
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Iniciar sesión con Google
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      minimumSize: const Size(double.infinity, 60),
+                    ),
+                    child: const Text(
+                      'Iniciar sesión con Google',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Raleway',
+                        fontSize: 17,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Divider(
+                  height: 20,
+                  thickness: 2,
+                  endIndent: 10,
+                  indent: 10,
+                ),
+                const SizedBox(height: 20),
+                const TextField(
+                  decoration: InputDecoration(
+                      hintText: 'Ingresa tu correo',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.mail_outline_rounded)),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
-            const SizedBox(height: 20),
-            const Divider(
-              height: 20,
-              thickness: 2,
-              endIndent: 30,
-              indent: 30,
-            ),
-            const SizedBox(height: 20),
-            const TextField(
-              decoration: InputDecoration(
-                hintText: 'Ingresa tu correo',
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text('No tienes cuenta '),
-                TextButton(
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'No tienes cuenta?',
+                      style: TextStyle(
+                        fontFamily: 'Raleway',
+                        fontSize: 17,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Navegar a la página de registro
+                      },
+                      child: const Text(
+                        'Registrate',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontFamily: 'Raleway',
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
                   onPressed: () {
-                    // Navegar a la página de registro
+                    // Acceder
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightBlue,
+                    minimumSize: const Size(double.infinity, 60),
+                  ),
                   child: const Text(
-                    'REGISTRATE',
+                    'Acceder',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Colors.white,
+                      fontFamily: 'Raleway',
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ],
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Acceder
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightBlue,
-              ),
-              child: const Text('Acceder'),
             ),
           ],
         ),

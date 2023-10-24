@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
-  const Register({super.key});
+class EnterMail extends StatelessWidget {
+  const EnterMail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +15,14 @@ class Register extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Crea tu cuenta',
+                'Registrate',
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Raleway'),
               ),
               SizedBox(height: 10),
-              Text(
-                  'Estas a punto de entrar a la mejor experiencia para administrar los recursos en tu hogar'),
+              Text('Ingresa tu correo para continuar'),
               SizedBox(height: 20),
             ],
           ),
@@ -75,7 +74,7 @@ class Register extends StatelessWidget {
                   minimumSize: const Size(double.infinity, 60),
                 ),
                 child: const Text(
-                  'Acceder',
+                  'Siguiente',
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Raleway',
