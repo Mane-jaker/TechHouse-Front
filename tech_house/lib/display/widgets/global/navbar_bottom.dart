@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_house/display/screens/Options/options.dart';
 import 'package:tech_house/display/screens/charts/charts.dart';
 import 'package:tech_house/display/screens/main/main_consumption.dart';
 
@@ -17,6 +18,7 @@ class _NavBarState extends State<NavbarBottom> {
   List pages = <Widget>[
     const MainConsuptiom(),
     const Charts(),
+    const Options()
   ];
 
   void onItemTapped(int index) {
@@ -27,7 +29,7 @@ class _NavBarState extends State<NavbarBottom> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> pageTitles = [widget.title, 'News', 'Podcast', 'Options'];
+    List<String> pageTitles = [widget.title, 'Home', 'Links', 'Options'];
 
     return Scaffold(
       appBar: AppBar(
@@ -41,16 +43,12 @@ class _NavBarState extends State<NavbarBottom> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.newspaper),
-            label: 'News',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.podcasts),
-            label: 'Podcast',
+            icon: Icon(Icons.phonelink_ring_outlined),
+            label: 'Links',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
