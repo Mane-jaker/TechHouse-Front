@@ -11,7 +11,7 @@ class MainConsuptiom extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          WaterLevelProgressBar(waterLevel: .2),
+          WaterLevelProgressBar(waterLevel: .3),
           const SizedBox(height: 30,),
           const CustomButton(icon: Icons.device_thermostat_outlined, text: 'Temperatura', destination: Options()),
           const SizedBox(height: 15,),

@@ -29,7 +29,7 @@ class _NavBarState extends State<NavbarBottom> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> pageTitles = [widget.title, 'Home', 'Links', 'Options'];
+    List<String> pageTitles = [widget.title, 'Home','Graficas', 'Links', 'Options',];
 
     return Scaffold(
       appBar: AppBar(
