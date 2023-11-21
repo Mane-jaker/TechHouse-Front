@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tech_house/display/screens/Options/options.dart';
-import 'package:tech_house/display/screens/charts/charts.dart';
 import 'package:tech_house/display/screens/main/main_consumption.dart';
+
+import '../../screens/sensor/sensor.dart';
 
 class NavbarBottom extends StatefulWidget {
   const NavbarBottom({super.key, required this.title});
@@ -17,7 +18,7 @@ class _NavBarState extends State<NavbarBottom> {
 
   List pages = <Widget>[
     const MainConsuptiom(),
-    const Charts(),
+    const Sensor(),
     const Options()
   ];
 
