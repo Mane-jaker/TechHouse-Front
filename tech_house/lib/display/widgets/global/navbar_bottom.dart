@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tech_house/display/screens/Options/options.dart';
-import 'package:tech_house/display/screens/charts/charts.dart';
 import 'package:tech_house/display/screens/main/main_consumption.dart';
 
 import '../../screens/sensor/sensor.dart';
@@ -19,8 +18,10 @@ class _NavBarState extends State<NavbarBottom> {
 
   List pages = <Widget>[
     const MainConsuptiom(),
+
     const Charts(),
     const Sensors(),
+
     const Options()
   ];
 
@@ -32,14 +33,16 @@ class _NavBarState extends State<NavbarBottom> {
 
   @override
   Widget build(BuildContext context) {
+
     List<String> pageTitles = [widget.title, 'Home', 'Graphic', 'Links', 'Options'];
+
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           pageTitles[pagenumber],
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.black),
         ),
       ),
       body: pages[pagenumber],
