@@ -18,7 +18,10 @@ class _NavBarState extends State<NavbarBottom> {
 
   List pages = <Widget>[
     const MainConsuptiom(),
-    const Sensor(),
+
+    const Charts(),
+    const Sensors(),
+
     const Options()
   ];
 
@@ -30,7 +33,9 @@ class _NavBarState extends State<NavbarBottom> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> pageTitles = [widget.title, 'Home','Graficas', 'Links', 'Options',];
+
+    List<String> pageTitles = [widget.title, 'Home', 'Graphic', 'Links', 'Options'];
+
 
     return Scaffold(
       appBar: AppBar(
@@ -46,6 +51,10 @@ class _NavBarState extends State<NavbarBottom> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.auto_graph_outlined),
+            label: 'Charts',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.phonelink_ring_outlined),
