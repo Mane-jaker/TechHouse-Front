@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 class ChangeDataButton extends StatelessWidget {
   final IconData icon;
   final String text;
+  final VoidCallback onPressed;
 
-  const ChangeDataButton({super.key, required this.icon, required this.text});
+  const ChangeDataButton({
+    Key? key,
+    required this.icon,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +18,7 @@ class ChangeDataButton extends StatelessWidget {
       width: 335.0,
       height: 80.0,
       child: ElevatedButton(
-        onPressed: () {
-
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
