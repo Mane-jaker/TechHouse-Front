@@ -38,6 +38,8 @@ dependencies:
   flutter_charts: ^0.5.2
   fl_chart: ^0.64.0
   charts_flutter: ^0.11.0
+  firebase_core: ^2.23.0
+  firebase_database: ^10.3.5
 
 dev_dependencies:
   flutter_test:

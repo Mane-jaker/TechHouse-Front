@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "890103873272",
+    "firebase_url": "https://iot2-37a8f-default-rtdb.firebaseio.com",
+    "project_id": "iot2-37a8f",
+    "storage_bucket": "iot2-37a8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890103873272:android:ec4a78c3801e29119ec50d",
+        "android_client_info": {
+          "package_name": "com.example.tech_house"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRQE_Ri6UYAxgRyr_SOJ1Aydd01h5QYFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

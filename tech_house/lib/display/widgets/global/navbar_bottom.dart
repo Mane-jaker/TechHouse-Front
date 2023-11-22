@@ -16,7 +16,7 @@ class _NavBarState extends State<NavbarBottom> {
   int pagenumber = 0;
 
   List pages = <Widget>[
-    const MainConsuptiom(),
+    MainConsuptiom(),
     const Charts(),
     const Sensor(),
     const Options()
@@ -30,9 +30,7 @@ class _NavBarState extends State<NavbarBottom> {
 
   @override
   Widget build(BuildContext context) {
-
     List<String> pageTitles = ['Home', 'Graphic', 'Links', 'Options'];
-
 
     return Scaffold(
       appBar: AppBar(
