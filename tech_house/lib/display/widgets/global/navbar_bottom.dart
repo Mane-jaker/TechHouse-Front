@@ -37,7 +37,7 @@ class _NavBarState extends State<NavbarBottom> {
         centerTitle: true,
         title: Text(
           pageTitles[pagenumber],
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.black),
         ),
       ),
       body: pages[pagenumber],
