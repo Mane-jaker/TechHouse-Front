@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tech_house/display/screens/Options/options.dart';
+import 'package:tech_house/display/screens/charts/charts.dart';
 import 'package:tech_house/display/screens/main/main_consumption.dart';
 
 import '../../screens/sensor/sensor.dart';
 
 class NavbarBottom extends StatefulWidget {
-  const NavbarBottom({super.key, required this.title});
-
-  final String title;
+  const NavbarBottom({super.key});
 
   @override
   State<NavbarBottom> createState() => _NavBarState();
@@ -18,10 +17,8 @@ class _NavBarState extends State<NavbarBottom> {
 
   List pages = <Widget>[
     const MainConsuptiom(),
-
     const Charts(),
-    const Sensors(),
-
+    const Sensor(),
     const Options()
   ];
 
@@ -34,7 +31,7 @@ class _NavBarState extends State<NavbarBottom> {
   @override
   Widget build(BuildContext context) {
 
-    List<String> pageTitles = [widget.title, 'Home', 'Graphic', 'Links', 'Options'];
+    List<String> pageTitles = ['Home', 'Graphic', 'Links', 'Options'];
 
 
     return Scaffold(
