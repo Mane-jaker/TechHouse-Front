@@ -3,6 +3,8 @@ import 'package:tech_house/display/screens/Options/options.dart';
 import 'package:tech_house/display/screens/charts/charts.dart';
 import 'package:tech_house/display/screens/main/main_consumption.dart';
 
+import '../../screens/sensor/sensor.dart';
+
 class NavbarBottom extends StatefulWidget {
   const NavbarBottom({super.key, required this.title});
 
@@ -18,6 +20,7 @@ class _NavBarState extends State<NavbarBottom> {
   List pages = <Widget>[
     const MainConsuptiom(),
     const Charts(),
+    const Sensors(),
     const Options()
   ];
 
@@ -29,7 +32,7 @@ class _NavBarState extends State<NavbarBottom> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> pageTitles = [widget.title, 'Home', 'Links', 'Options'];
+    List<String> pageTitles = [widget.title, 'Home', 'Graphic', 'Links', 'Options'];
 
     return Scaffold(
       appBar: AppBar(
@@ -45,6 +48,10 @@ class _NavBarState extends State<NavbarBottom> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.auto_graph_outlined),
+            label: 'Charts',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.phonelink_ring_outlined),
