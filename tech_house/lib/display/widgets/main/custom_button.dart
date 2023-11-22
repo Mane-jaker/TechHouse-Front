@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final IconData icon;
   final String text;
-  final Widget destination;
+  final int number;
+  final String unit;  // Añade un nuevo parámetro para la unidad de medida
 
-  const CustomButton({super.key, required this.icon, required this.text, required this.destination});
+  const CustomButton({super.key, required this.icon, required this.text, required this.number, required this.unit});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +15,7 @@ class CustomButton extends StatelessWidget {
       height: 80.0,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => destination),
-          );
+
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -33,7 +31,7 @@ class CustomButton extends StatelessWidget {
               child: Icon(icon, color: Colors.white, size: 30.0),
             ),
             Text(text, style: const TextStyle(fontSize: 20.0, color: Color(0xFF7E7E7E))),
-            const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFF7E7E7E)),
+            Text('$number $unit', style: const TextStyle(fontSize: 20.0, color: Color(0xFF7E7E7E))),  // Muestra el número con su unidad de medida
           ],
         ),
       ),
