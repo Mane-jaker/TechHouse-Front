@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-
 import '../../widgets/main/change_data_button.dart';
+import 'dart:async';
+import 'dart:math';
 
 class Charts extends StatefulWidget {
   const Charts({Key? key}) : super(key: key);
@@ -13,7 +14,40 @@ class Charts extends StatefulWidget {
 
 class _ChartsState extends State<Charts> {
   bool isSwitched = false;
-  List<double> values = [5.5, 7, 7, 7];
+  bool consumAgua = true;
+  List<double> valuesA = [1.5, 1, 1, 1];
+  List<double> valuesE = [1.5, 1, 1, 1];
+  List<double> valuesCA = [1.5, 1, 1, 1];
+  List<double> valuesCE = [1.5, 1, 1, 1];
+  Random random = Random();
+  late Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(Duration(seconds: 5), (Timer t) => generateData());
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  void generateData() {
+    double agua = random.nextDouble() * 10;
+    double energia = random.nextDouble() * 10;
+
+    print(agua);
+    print(energia);
+
+    setState(() {
+      valuesA = [...valuesA.sublist(1), agua];
+      valuesE = [...valuesE.sublist(1), energia];
+      valuesCA = [...valuesCA.sublist(1), (valuesCA.last + agua)];
+      valuesCE = [...valuesCE.sublist(1), (valuesCE.last + energia)];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +89,7 @@ class _ChartsState extends State<Charts> {
           text: 'Consu. Agua',
           onPressed: () {
             setState(() {
-              values = [3, 4, 5, 6];  // Cambia esto por los valores que quieras
+              consumAgua = true;
             });
           },
         ),
@@ -65,7 +99,7 @@ class _ChartsState extends State<Charts> {
           text: 'Consu. Electrico',
           onPressed: () {
             setState(() {
-              values = [6, 5, 4, 3];  // Cambia esto por los valores que quieras
+              consumAgua = false;
             });
           },
         )
@@ -80,25 +114,25 @@ class _ChartsState extends State<Charts> {
           BarChartGroupData(
             x: 1,
             barRods: [
-              BarChartRodData(toY: values[0], color: Colors.lightBlueAccent, width: 25)
+              BarChartRodData(toY: consumAgua ? valuesA[0] : valuesE[0], color: Colors.lightBlueAccent, width: 25)
             ],
           ),
           BarChartGroupData(
             x: 2,
             barRods: [
-              BarChartRodData(toY: values[1], color: Colors.lightBlueAccent, width: 25)
+              BarChartRodData(toY:consumAgua ? valuesA[1] : valuesE[1], color: Colors.lightBlueAccent, width: 25)
             ],
           ),
           BarChartGroupData(
             x: 3,
             barRods: [
-              BarChartRodData(toY: values[2], color: Colors.lightBlueAccent, width: 25)
+              BarChartRodData(toY: consumAgua ? valuesA[2] : valuesE[2], color: Colors.lightBlueAccent, width: 25)
             ],
           ),
           BarChartGroupData(
             x: 4,
             barRods: [
-              BarChartRodData(toY: values[3], color: Colors.lightBlueAccent, width: 25)
+              BarChartRodData(toY: consumAgua ? valuesA[3] : valuesE[3], color: Colors.lightBlueAccent, width: 25)
             ],
           ),
         ],
@@ -112,10 +146,10 @@ class _ChartsState extends State<Charts> {
         lineBarsData: [
           LineChartBarData(
             spots: [
-              FlSpot(0, values[0]),
-              FlSpot(1, values[1]),
-              FlSpot(2, values[2]),
-              FlSpot(3, values[3]),
+              FlSpot(0, consumAgua ? valuesCA[0] : valuesCE[0]),
+              FlSpot(1, consumAgua ? valuesCA[1] : valuesCE[1]),
+              FlSpot(2, consumAgua ? valuesCA[2] : valuesCE[2]),
+              FlSpot(3, consumAgua ? valuesCA[3] : valuesCE[3]),
             ],
             color: Colors.lightBlueAccent,
           ),

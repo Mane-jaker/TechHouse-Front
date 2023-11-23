@@ -1,50 +1,78 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:tech_house/display/widgets/main/custom_button.dart';
 import 'package:tech_house/display/widgets/main/water_level_chart.dart';
-import 'package:firebase_database/firebase_database.dart';
 
-class MainConsuptiom extends StatelessWidget {
-  MainConsuptiom({Key? key}) : super(key: key);
+class MainConsuptiom extends StatefulWidget {
+  const MainConsuptiom({Key? key}) : super(key: key);
 
-  final dbRef = FirebaseDatabase.instance.reference();
+  @override
+  _MainConsuptiomState createState() => _MainConsuptiomState();
+}
+
+class _MainConsuptiomState extends State<MainConsuptiom> {
+  late Stream<DatabaseEvent> streamData;
+  Stream<DatabaseEvent> streamDataKey = Stream.empty();
+
+  @override
+  void initState() {
+    super.initState();
+    streamData = FirebaseDatabase.instance
+        .ref('datos_sensores')
+        .orderByKey()
+        .limitToLast(1)
+        .onValue;
+
+    streamData.listen((DatabaseEvent event) {
+      // Obtén el último ID
+      Object? values = event.snapshot.value;
+      String valuesString = values.toString();
+      RegExp regExp = RegExp(r'-\w{19}');
+      String key = regExp.stringMatch(valuesString)!;
+      print('Last Key: $key');
+
+      // Usa el último ID para obtener los datos
+      setState(() {
+        streamDataKey = FirebaseDatabase.instance.ref('datos_sensores/$key').onValue;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          WaterLevelProgressBar(waterLevel: .3),
-          const SizedBox(
-            height: 30,
-          ),
-          const CustomButton(
-              icon: Icons.device_thermostat_outlined,
-              text: 'Temperatura',
-              number: 5,
-              unit: '°C'),
-          const SizedBox(
-            height: 15,
-          ),
-          const CustomButton(
-              icon: Icons.bolt_outlined,
-              text: 'Kilowatts',
-              number: 5,
-              unit: 'KhW'),
-          const SizedBox(
-            height: 15,
-          ),
-          const CustomButton(
-              icon: Icons.light_mode_outlined,
-              text: 'Luminosidad',
-              number: 5,
-              unit: 'mW')
-        ],
-      ),
+    return StreamBuilder<DatabaseEvent>(
+      stream: streamDataKey,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          // Aquí puedes acceder a los datos de Firebase
+          var data = (snapshot.hasData && snapshot.data!.snapshot.value != null)
+              ? Map<String, dynamic>.from(snapshot.data!.snapshot.value as Map)
+              : null;
+
+          return Center(
+            child: Column(
+              children: [
+                data != null ? WaterLevelProgressBar(waterLevel: data['distancia'] / 1000) : Container(),  // Verifica si data es null antes de usarlo
+                const SizedBox(height: 30,),
+                data != null ? CustomButton(icon: Icons.device_thermostat_outlined, text: 'Temperatura', number: data['temperatura'].toDouble(), unit: '°C') : Container(),  // Verifica si data es null antes de usarlo
+                const SizedBox(height: 15,),
+                data != null ? CustomButton(icon: Icons.bolt_outlined, text: 'Kilowatts', number: data['kilowats'].toDouble(), unit: 'KhW') : Container(),  // Verifica si data es null antes de usarlo
+                const SizedBox(height: 15,),
+                data != null ? CustomButton(icon: Icons.light_mode_outlined, text: 'Luminosidad', number: data['luminosity'].toDouble(), unit: 'mW') : Container()  // Verifica si data es null antes de usarlo
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 }
+
+
 
 /*
 void fetchData() {

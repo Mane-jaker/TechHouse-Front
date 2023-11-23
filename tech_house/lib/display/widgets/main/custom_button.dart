@@ -4,7 +4,7 @@ import 'package:tech_house/display/screens/main/main_consumption.dart';
 class CustomButton extends StatelessWidget {
   final IconData icon;
   final String text;
-  final int number;
+  final double number;
   final String unit; // Añade un nuevo parámetro para la unidad de medida
 
   const CustomButton(
@@ -21,7 +21,7 @@ class CustomButton extends StatelessWidget {
       height: 80.0,
       child: ElevatedButton(
         onPressed: () {
-          fetchData();
+          //fetchData();
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
